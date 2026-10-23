@@ -1,0 +1,7 @@
+# Licensed under the Apache License, Version 2.0: https://www.apache.org/licenses/LICENSE-2.0
+line: bouncycastle-1.78
+repository: patch-bc-java
+members:
+  - org.bouncycastle:bcprov-jdk18on
+  - org.bouncycastle:bcpkix-jdk18on
+  - org.bouncycastle:bcutil-jdk18on
