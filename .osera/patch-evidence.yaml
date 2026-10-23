@@ -1,7 +1,7 @@
 # Licensed under the Apache License, Version 2.0: https://www.apache.org/licenses/LICENSE-2.0
 schema: osera-patch-evidence/0.1.0
 producer: moderne
-release: 1.69.1-osera-00017
+release: 1.69.1-osera-00018
 baseline: v1.69+patch.baseline
 fixes:
   - cve: CVE-2024-29857
@@ -140,12 +140,20 @@ fixes:
     basis: adapted
     artifacts:
       - org.bouncycastle:bcprov-jdk15on
-    note: New in this release; adapted onto 1.69; fixed at 1.69.1-backpatch-00017 (backpatch-bc-java@f4b7618).
+    note: Carried from 1.69.1-backpatch-00017.
+  - cve: CVE-2026-8763
+    upstream_fix_url: https://github.com/bcgit/bc-java/commit/b2769e8e7e2ac890de2ee6539cb2ec0450f34d79
+    advisory_url: https://nvd.nist.gov/vuln/detail/CVE-2026-8763
+    patch_commit_url: https://github.com/moderne-backpatch-alliance/backpatch-bc-java/compare/b26d85a~1...1523e5c
+    basis: adapted
+    artifacts:
+      - org.bouncycastle:bcprov-jdk15on
+    note: New in this release; adapted onto 1.69; fixed at 1.69.1-backpatch-00018 (backpatch-bc-java@b26d85a..1523e5c).
 tests:
-  commit: 0915b50d4f7bc7216393423826f3ddbdb4fa099e
+  commit: 354d9b9bca3b6943f536f33f4385d23e829f75e8
   command: BC's Ant release build (ant/bc+-build.xml, JDK 8, -source/-target 1.5, multi-release classes by OpenJDK 9.0.4 and Temurin 11.0.13 in a linux/amd64 container), then ant junit over AllTests of core, prov, util and pkix (bc-1.70-suite.xml) on JDK 8, through <alliance>/work/wave2/items/scripts/bc-1.70-ant.sh package and suite
   runtime: Azul Zulu (Java 1.8.0_382) running the tests, macOS aarch64
-  report: bcprov-jdk15on-1.69.1-osera-00017-tests.zip
-  report_sha256: af3e7245fedf79bedff5a9ee30d49512222877c9fd99732e1888421bd8ca9046
+  report: bcprov-jdk15on-1.69.1-osera-00018-tests.zip
+  report_sha256: b0437c18428b78063db51670abbe2543d03bb11bbafb5b42fa56ce2b9e240c16
   result: pass
-  note: the full suite at the tested commit, 1108 tests run, 0 failed, 0 skipped; the regression tests for CVE-2026-58059 are RDNEscapeTest, RegressionTest, X500NameTest
+  note: the full suite at the tested commit, 1109 tests run, 0 failed, 0 skipped; the regression tests for CVE-2026-8763 are PKIXNameConstraintsTest, CertPathValidatorTest, MultiValuedRDNEmailTest
