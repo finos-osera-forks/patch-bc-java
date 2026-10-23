@@ -1,7 +1,7 @@
 # Licensed under the Apache License, Version 2.0: https://www.apache.org/licenses/LICENSE-2.0
 schema: osera-patch-evidence/0.1.0
 producer: moderne
-release: 1.70.1-osera-00036
+release: 1.70.1-osera-00037
 baseline: v1.70+patch.baseline
 fixes:
   - cve: CVE-2024-29857
@@ -295,12 +295,20 @@ fixes:
     basis: adapted
     artifacts:
       - org.bouncycastle:bctls-jdk15on
-    note: New in this release; adapted onto 1.70; fixed at 1.70.1-backpatch-00036 (backpatch-bc-java@277ecde).
+    note: Carried from 1.70.1-backpatch-00036.
+  - cve: CVE-2024-30171
+    upstream_fix_url: https://github.com/bcgit/bc-java/commit/8767f0b2a5ae15d5e5ae1b868fa92e1753a4b317
+    advisory_url: https://nvd.nist.gov/vuln/detail/CVE-2024-30171
+    patch_commit_url: https://github.com/moderne-backpatch-alliance/backpatch-bc-java/compare/4d01224~1...0f67dbf
+    basis: adapted
+    artifacts:
+      - org.bouncycastle:bctls-jdk15on
+    note: New in this release; adapted onto 1.70; fixed at 1.70.1-backpatch-00037 (backpatch-bc-java@4d01224..0f67dbf).
 tests:
-  commit: b5d2466c303ae83ebe9f9cfad6e70cc3c193629f
+  commit: 4e5c0b6eb7fd1f4cf816fba725575ea17aed8973
   command: BC's Ant release build of bctls with the tree's own bcprov and bcutil (JDK 8, -source/-target 1.5, the jdk1.9 classes by OpenJDK 9.0.4 in a linux/amd64 container), then ant junit over every AllTests under tls/src/test/java (bctls-suite.xml) on JDK 8, through <alliance>/work/wave2/items/scripts/bctls-ant.sh package and suite
   runtime: Azul Zulu (Java 1.8.0_382) running the tests, macOS aarch64
-  report: bctls-jdk15on-1.70.1-osera-00036-tests.zip
-  report_sha256: 915ee64ab04b0f7838e0b201d7e5a9309863e5690df7c490c3a2a8c4f936003e
+  report: bctls-jdk15on-1.70.1-osera-00037-tests.zip
+  report_sha256: 0742e9cdb25714d662e211766567b65f0190c3ac717eff041290ccba7a9a6628
   result: pass
-  note: the full suite at the tested commit, 531 tests run, 0 failed, 0 skipped; the regression tests for CVE-2026-59646 are DTLSReassemblyLimitTest
+  note: the full suite at the tested commit, 538 tests run, 0 failed, 0 skipped; the regression tests for CVE-2024-30171 are RSAPreMasterSecretDecryptionTest
